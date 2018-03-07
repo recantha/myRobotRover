@@ -1,0 +1,186 @@
+<!doctype html>
+<html>
+<head></head>
+<body>
+
+
+{% if drive_mode=='start' %}
+	<form name="start" id="start" action="/start" method="POST">
+                <table class="center_top">
+                <tr>
+                <td style="text-align:center"><input type='submit' class="btn" name="drive_mode" value="MANUAL"  onclick="submitform()"></td>
+                </tr><tr>
+                <td style="text-align:center"><input type='submit' class="btn" name="drive_mode" value="AUTO"    onclick="submitform()"></td>
+                </tr>
+                </table>
+	</form> 
+{% endif %}
+
+{% if drive_mode=='MANUAL' %}
+<div class="backdiv">
+    <img class='vidimg' src="http://192.168.1.5:4999/"></img>
+
+<form Name="drive" id="drive" action="/drive_manual" method="POST">
+
+    <div class="overlay_top">
+        <table class="center_top">
+        <tr>
+        <td><input type='submit' class="btn"  name="newway" value="MANUAL" style="float:left; background: red"  onclick="submitform()"></td>
+        <td><h1>ΠΑΜΕ {{going}} με {{speed}} {{writethis}}</h1></td>
+        <td><input type='submit' class="btn" name="newway" value="AUTO"   style="float:right"   onclick="submitform()"></td>
+        </tr>
+        </table>
+    </div>
+
+    <div class="overlay_bottom">
+        <table class="center_bottom">
+        <tr>
+        <td width="15%" ><input type=image src="{{url_for('static', filename='brake.png')}}" name="newway" value="brake" width='40px' height='auto' onclick="submitform()"></td>
+        <td width="15%" ><input type=image src="{{url_for('static', filename='L.png')}}" name="newway" value="L" width='40px' height='auto' onclick="submitform()"></td>
+        <td width="15%" ><input type=image src="{{url_for('static', filename='F.png')}}" name="newway" value="F" width='40px' height='auto' onclick="submitform()"></td>
+        <td width="15%" ><input type=image src="{{url_for('static', filename='S.png')}}" name="newway" value="S" width='40px' height='auto' onclick="submitform()"></td>
+        <td width="15%" ><input type=image src="{{url_for('static', filename='B.png')}}" name="newway" value="B" width='40px' height='auto' onclick="submitform()"></td>
+        <td width="15%" ><input type=image src="{{url_for('static', filename='R.png')}}" name="newway" value="R" width='40px' height='auto' onclick="submitform()"></td>
+        <td width="15%" ><input type=image src="{{url_for('static', filename='accel.png')}}" name="newway" value="accel" width='40px' height='auto' onclick="submitform()"></td>
+        </tr>
+    </div>
+</form>      
+        
+</div>
+{% endif %}
+
+{% if drive_mode=='AUTO' %}
+<div class="backdiv">
+    <img class='vidimg' src="http://192.168.1.5:4999/"></img>
+
+<form Name="drive" id="drive" action="/drive_auto" method="POST">
+
+    <div class="overlay_top">
+        <table class="center_top">
+        <tr>
+        <td><input type='submit' class="btn"  name="stop_go" value="MANUAL" style="float:left"  onclick="submitform()"></td>
+        <td><h1>ΠΑΜΕ {{going}} με {{speed}} {{writethis}}</h1></td>
+        <td><input type='submit' class="btn" name="stop_go" value="AUTO"   style="float:right; background: red"   onclick="submitform()"></td>
+        </tr>
+        </table>
+    </div>
+
+
+    <div class="overlay_bottom">
+        <div class="center_bottom">
+            <table>
+                <tr>
+                <td><input type=image src="{{url_for('static', filename='F.png')}}" name="stop_go" value="F" width='40px' height='auto' onclick="submitform()"</td>
+                </tr>
+                <tr>
+                <td><input type=image src="{{url_for('static', filename='S.png')}}" name="stop_go" value="S" width='40px' height='auto' onclick="submitform()"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+</form> 
+</div>
+{% endif %}
+
+
+<STYLE>
+
+h1 {color:white; font-family:verdana; font-size:100%;text-align:center;}
+ 
+.btn {
+  background: rgba(0, 0, 0, 0,4);
+  text-shadow: 1px 1px 2px #666666;
+  font-family: Arial;
+  color: #0000ff;
+  font-size: 14px;
+  padding: 1px 2px 1px 2px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #3cb0fd;
+  text-decoration: none;
+}
+
+.backdiv {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: inline-block;
+    background-color: rgba(180, 180, 180, 1);
+    width:100%;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    overflow: auto;
+    z-index: 0;
+}
+                                       
+.vidimg {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width:100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    overflow: auto;
+    border-radius:0px;
+}
+
+.overlay_top {
+    position: fixed;
+    vertical-align:top;
+    top: 0;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    overflow: auto;
+    background-color:rgba(0, 50, 50, 0,4);
+    
+}                                       
+
+.overlay_bottom {
+    position: fixed;
+    vertical-align:bottom;
+    bottom: 0;
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    overflow: auto;
+    background-color: rgba(0, 50, 50, 0,1);
+}
+                                       
+
+.center_bottom {
+    position: fixed;
+    width:100%;
+    margin:auto;
+    right:0;
+    left:0;
+    bottom: 0;
+    padding: 2px;
+}
+.center_top {
+    position: fixed;
+    width:100%;
+    margin:auto;
+    right:0;
+    left:0;
+    top: 0;
+    padding: 2px;
+}
+
+</STYLE>
+                                       
+<script>
+function submitform() {
+    document.getElementById('drive').submit();
+}
+</script>
