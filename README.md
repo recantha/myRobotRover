@@ -3,11 +3,13 @@ This is a project to create a robot car to move either autonomously or driven th
 It utilises Flask for the web interface and the motion lib (https://motion-project.github.io/index.html)  for streaming a video image to the same web interface as the move commands
 As Flask does not allow for public variables (tried many different approaches) I had to resort to using a single sqlite3 table ('ways') held in memory (no read/write to physical diskfile).This is initialised by:
 
+
 conn = sqlite3.connect(':memory:', check_same_thread=False)
 c = conn.cursor()
 c.execute('''CREATE TABLE IF NOT EXISTS ways (oldway text, newway text, drive_mode text, dc int)''')
 c.execute("INSERT INTO ways VALUES ('S','S','AUTO',0)")
 conn.commit()
+
 
 I then either READ:
 
