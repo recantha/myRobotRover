@@ -1,7 +1,12 @@
 # myRobotRover
 This is a project to create a robot car to move either autonomously or driven through a web interface.
 It utilises Flask for the web interface and the motion lib (https://motion-project.github.io/index.html)  for streaming a video image to the same web interface as the move commands
-As Flask does not allow for public variables (tried many different approaches) I had to resort to using a single sqlite3 table ('ways') held in memory (no read/write to physical diskfile).This is initialised by:
+As Flask does not allow for public variables (tried many different approaches) I had to resort to using a single sqlite3 table ('ways') held in memory (no read/write to physical diskfile).
+Istalling sqlite3 is easy:
+
+    $ sudo apt-get install sqlite3
+
+And it is initialised by:
 
     conn = sqlite3.connect(':memory:', check_same_thread=False)
     c = conn.cursor()
@@ -24,3 +29,5 @@ depending on whether I need to retrieve the motor movement commands or store the
 
 Finally I use threading so that I can continuously read  the distance from an obstructing object.
 The code seems to work but there is appreciable lag from the command given by the web interface to execution. The main problem however is the erratic behaviour of the engines which once started they run / stop /run again with different speed to the one expected
+
+If cloning it is important to change the my.sh using the directory to whatever dir you clone to and use the commands for a pi camera included in the same sh file
