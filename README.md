@@ -30,4 +30,4 @@ depending on whether I need to retrieve the motor movement commands or store the
 Finally I use threading so that I can continuously read  the distance from an obstructing object.
 The code seems to work but there is appreciable lag from the command given by the web interface to execution. The main problem however is the erratic behaviour of the engines which once started they run / stop /run again with different speed to the one expected
 
-If cloning it is important to change the my.sh using the directory to whatever dir you clone to and use the commands for a pi camera included in the same sh file
+If cloning change to whatever dir you clone to and use the commands for motion and the pi camera included in  my.sh file
