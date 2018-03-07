@@ -1,7 +1,9 @@
 # myRobotRover
 This is a project to create a robot car to move either autonomously or driven through a web interface.
-It utilises Flask for the web interface and the motion lib (https://motion-project.github.io/index.html)  for streaming a video image to the same web interface as the move commands
+It utilises Flask for the web interface and the motion lib (https://motion-project.github.io/index.html)  for streaming a video image to the same web interface as the movement control commands.
+
 As Flask does not allow for public variables (tried many different approaches) I had to resort to using a single sqlite3 table ('ways') held in memory (no read/write to physical diskfile).
+
 Istalling sqlite3 is easy:
 
     $ sudo apt-get install sqlite3
