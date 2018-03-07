@@ -10,10 +10,12 @@ c.execute("INSERT INTO ways VALUES ('S','S','AUTO',0)")
 conn.commit()
 
 I then either READ:
+
     c.execute('SELECT * FROM ways')
     (oldway, newway, drive_mode, dc) = c.fetchone()
     
 or read and then UPDATE the table:
+
     c.execute('''UPDATE ways SET oldway=?, newway=?, drive_mode=?, dc=? ''', (oldway,newway,drive_mode,dc))
     conn.commit()
     
