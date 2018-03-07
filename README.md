@@ -12,11 +12,12 @@ conn.commit()
 I then either READ:
     c.execute('SELECT * FROM ways')
     (oldway, newway, drive_mode, dc) = c.fetchone()
-
+    
 or read and then UPDATE the table:
     c.execute('''UPDATE ways SET oldway=?, newway=?, drive_mode=?, dc=? ''', (oldway,newway,drive_mode,dc))
     conn.commit()
-
+    
 depending on whether I need to retrieve the motor movement commands or store the new values.
+
 Finally I use threading so that I can continuously read  the distance from an obstructing object.
 The code seems to work but there is appreciable lag from the command given by the web interface to execution. The main problem however is the erratic behaviour of the engines which once started they run / stop /run again with different speed to the one expected
